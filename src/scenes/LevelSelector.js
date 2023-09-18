@@ -31,13 +31,37 @@ export default class LevelSelector extends Phaser.Scene{
         level1Button.on('pointerdown',()=>{
             this.scene.start("Level1");
         });
-
-        const backButton = this.add.text(960,700, 'Back',{
+        
+// lvl2btn
+        const level2Button = this.add.text(960,700, 'Level 2',{
             fontSize : '50px',
             color : '#fff',
             align : 'center',
             backgroundColor : '#2d2d2d'
         }).setPadding(32).setOrigin(0.5);
+
+        level2Button.setInteractive({useHandCursor : true});
+
+        level2Button.on('pointerover',()=>{
+            level2Button.setBackgroundColor('#8d8d8d');
+        });
+
+        level2Button.on('pointerout',()=>{
+            level2Button.setBackgroundColor('#2d2d2d');
+        });
+
+        level2Button.on('pointerdown',()=>{
+            this.scene.start("Level2");
+        });
+        
+    // backbtn
+        const backButton = this.add.text(960,900, 'Back',{
+            fontSize : '50px',
+            color : '#fff',
+            align : 'center',
+            backgroundColor : '#2d2d2d'
+        }).setPadding(32).setOrigin(0.5);
+
 
         backButton.setInteractive({useHandCursor : true});
 

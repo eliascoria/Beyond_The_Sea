@@ -2,15 +2,15 @@ import Phaser from "phaser";
 import Player from "../components/Player";
 import Enemy from "../components/Enemy";
 
-export default class Level1 extends Phaser.Scene {
+export default class Level2 extends Phaser.Scene {
   constructor() {
-    super("Level1");
+    super("Level2");
   }
 
   create() {
-    this.map = this.make.tilemap({ key: "map" });
-    const floorL = this.map.addTilesetImage("floor", "floor");
-    const wallL = this.map.addTilesetImage("wall", "wall");
+    this.map = this.make.tilemap({ key: "map1" });
+    const floorL = this.map.addTilesetImage("floor1-BTS", "floor1-BTS");
+    const wallL = this.map.addTilesetImage("wall1_BTS", "wall1_BTS");
     const floorLayer = this.map.createLayer("floor", floorL, 0, 0);
     const wallLayer = this.map.createLayer("wall", wallL, 0, 0);
     const objectsLayer = this.map.getObjectLayer("objects");
@@ -23,7 +23,8 @@ export default class Level1 extends Phaser.Scene {
       (obj) => obj.name === "player"
     );
 
-    this.player = new Player(this, spawnPoint.x, spawnPoint.y, "player");
+    this.player = new Player(this, spawnPoint.x, spawnPoint.y, "player",);
+
     this.enemy = new Enemy(this, 1500, 800, "player", 200, this.player, this.map);
 
     this.cameras.main.startFollow(this.player);
@@ -61,7 +62,7 @@ export default class Level1 extends Phaser.Scene {
     });
 
     pauseButton.on('pointerdown', ()=>{
-      this.scene.pause("Level1");
+      this.scene.pause("Level2");
       this.scene.launch("Pause");
     });
 
@@ -75,7 +76,7 @@ export default class Level1 extends Phaser.Scene {
     this.enemy.update();
 
     if(this.keyESC.isDown){
-      this.scene.pause("Level1");
+      this.scene.pause("Level2");
       this.scene.launch("Pause");
     }
     this.scene.setVisible(true, "UI");
